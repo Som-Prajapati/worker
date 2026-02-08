@@ -1,2 +1,5 @@
-#include <vector>
-int main(){ std::vector<int> v(1e9); }
+#include <unistd.h>
+#include <iostream>
+int main() {
+    std::cout << getpid() << "\n";
+}

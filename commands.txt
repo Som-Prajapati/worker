@@ -14,10 +14,14 @@ rm -rf sandbox
 mkdir -p sandbox/root/bin sandbox/run
 cp /bin/busybox sandbox/root/bin/sh
 
-// static rung++ sandbox/run/main.cpp -O2 -static -o sandbox/run/a.out
+// static run
+g++ sandbox/run/main.cpp -O2 -static -o sandbox/run/a.out
 cp sandbox/run/a.out sandbox/root/bin/a.out
 
 // run
 g++ worker.cpp -O2 -o worker
 sudo ./worker
 
+
+
+note use the id -u pid 
