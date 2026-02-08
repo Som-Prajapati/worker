@@ -1,0 +1,23 @@
+// cgroup setup
+
+sudo mkdir -p /sys/fs/cgroup/oj
+echo "+memory +cpu" | sudo tee /sys/fs/cgroup/oj/cgroup.subtree_control
+
+
+//verify 
+cat /sys/fs/cgroup/oj/cgroup.subtree_control
+# cpu memory
+
+
+// prepare sandbox
+rm -rf sandbox
+mkdir -p sandbox/root/bin sandbox/run
+cp /bin/busybox sandbox/root/bin/sh
+
+// static rung++ sandbox/run/main.cpp -O2 -static -o sandbox/run/a.out
+cp sandbox/run/a.out sandbox/root/bin/a.out
+
+// run
+g++ worker.cpp -O2 -o worker
+sudo ./worker
+
